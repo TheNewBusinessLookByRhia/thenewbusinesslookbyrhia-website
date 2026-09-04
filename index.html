@@ -60,28 +60,42 @@ Error generating stack: `+a.message+`
     div.style.cssText = 'background:#C5A06A;color:#fff;position:relative;z-index:9999;width:100%;';
     document.body.insertBefore(div, document.body.firstChild);
   }
-  // also add to nav if possible
+
   function addNav(){
     try{
       if(document.getElementById('tnbl-bc-link')) return;
       var nav = document.querySelector('nav');
       if(!nav) return;
-      var btns = nav.querySelectorAll('button');
-      var target = null;
-      for(var i=0;i<btns.length;i++){
-        if((btns[i].textContent||'').trim().toUpperCase()==='PACKAGES'){ target = btns[i]; break; }
-      }
-      if(!target) return;
+      // create link if nav exists; append to end for robustness
       var a = document.createElement('a');
       a.id='tnbl-bc-link';
       a.href='/business-cards.html';
       a.innerHTML='BUSINESS CARDS <span style="background:#C5A06A;color:#fff;font-size:8px;padding:2px 5px;border-radius:999px;margin-left:6px;">10% OFF</span>';
-      a.style.cssText='font-size:11px;letter-spacing:0.12em;margin-left:8px;text-decoration:none;color:inherit;';
-      target.parentNode.insertBefore(a, target.nextSibling);
+      a.style.cssText='font-size:11px;letter-spacing:0.12em;margin-left:12px;text-decoration:none;color:inherit;padding:6px 8px;border-radius:6px;';
+      nav.appendChild(a);
     }catch(e){}
   }
-  setTimeout(function(){ addBanner(); addNav(); }, 800);
-  setInterval(function(){ addBanner(); addNav(); }, 1500);
+
+  function addHeroButton(){
+    try{
+      if(document.getElementById('tnbl-hero-order')) return;
+      var main = document.querySelector('main') || document.body;
+      var h1 = main.querySelector('h1');
+      var btn = document.createElement('a');
+      btn.id = 'tnbl-hero-order';
+      btn.href = '/business-cards.html';
+      btn.innerText = 'Order Now';
+      btn.style.cssText = 'display:inline-block;background:#C5A06A;color:#111;padding:10px 16px;border-radius:8px;font-weight:700;margin:14px 0 0;text-decoration:none';
+      if(h1 && h1.parentNode){
+        h1.parentNode.insertBefore(btn, h1.nextSibling);
+      } else {
+        main.insertBefore(btn, main.firstChild);
+      }
+    }catch(e){}
+  }
+
+  setTimeout(function(){ addBanner(); addNav(); addHeroButton(); }, 800);
+  setInterval(function(){ addBanner(); addNav(); addHeroButton(); }, 1500);
 })();
 </script>
 </body>
