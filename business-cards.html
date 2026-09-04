@@ -4,96 +4,55 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Business Cards — Order</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{--gold:#C5A06A;--brown:#5C4A3D;--bg:#FDF1F0}
-    body{font-family:Inter,Arial,Helvetica,sans-serif;background:#fff;color:#1a1a1a;margin:0}
-    .site-header{background:#fff;border-bottom:1px solid rgba(26,26,26,0.06);position:sticky;top:0;z-index:40}
-    .site-header .container{max-width:1320px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between}
-    .logo{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:-0.02em;color:var(--brown);font-weight:700}
-    .logo small{display:block;font-size:11px;font-weight:400;font-style:italic;color:#7b6b60}
-    main.container{max-width:1100px;margin:40px auto;padding:0 20px}
-    .hero{padding:30px 0;text-align:center}
-    h1{font-family:'Playfair Display',serif;font-size:36px;color:var(--brown);margin:0 0 8px}
-    p.lead{color:#6b6158;margin-bottom:20px}
-    /* form styling to match site */
-    form.order-form{background:#fff;padding:26px;border-radius:12px;border:1px solid rgba(26,26,26,0.06);box-shadow:0 6px 20px rgba(0,0,0,0.04)}
-    label{display:block;margin:10px 0 6px;font-weight:600;color:#3e352e}
-    input,select,textarea{width:100%;padding:12px;border:1px solid rgba(26,26,26,0.08);border-radius:8px;font-size:15px}
-    textarea{min-height:120px}
-    .row{display:flex;gap:16px}
-    .col{flex:1}
-    .submit{background:var(--gold);color:#111;border:none;padding:12px 18px;border-radius:8px;font-weight:700;cursor:pointer;margin-top:12px}
-    footer{max-width:1100px;margin:30px auto;padding:0 20px;color:#777;font-size:13px}
-    a{text-decoration:none;color:inherit}
-    @media (max-width:720px){.row{flex-direction:column}}
-  </style>
+  <style>body{font-family:Arial,Helvetica,sans-serif;max-width:820px;margin:32px auto;padding:0 16px}label{display:block;margin:10px 0 6px;font-weight:600}input,select,textarea{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px}button{background:#C5A06A;color:#111;border:none;padding:12px 18px;border-radius:8px;font-weight:700;margin-top:14px;cursor:pointer}header a{color:inherit;text-decoration:none}</style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <div class="logo">THE NEW BUSINESS LOOK <small>by Rhia</small></div>
-      <nav aria-label="Main navigation">
-        <a href="/">Home</a>
-      </nav>
-    </div>
+  <header>
+    <a href="/">← Back to home</a>
+    <h1>Business Card Order</h1>
+    <p>Fill the form below and click Submit. The request will be emailed to thenewbusinesslook@outlook.co.uk.</p>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Business Card Order</h1>
-      <p class="lead">Complete the form below and the request will be emailed to thenewbusinesslook@outlook.co.uk. (No server required)</p>
-    </section>
+  <form action="https://formsubmit.co/thenewbusinesslook@outlook.co.uk" method="POST">
+    <!-- Hidden fields for FormSubmit behavior -->
+    <input type="hidden" name="_subject" value="New business card order">
+    <input type="hidden" name="_next" value="/thank-you-business-cards.html">
+    <input type="hidden" name="_captcha" value="false">
 
-    <section>
-      <form class="order-form" action="https://formsubmit.co/thenewbusinesslook@outlook.co.uk" method="POST">
-        <input type="hidden" name="_subject" value="New business card order">
-        <input type="hidden" name="_next" value="/thank-you-business-cards.html">
-        <input type="hidden" name="_captcha" value="false">
+    <label for="name">Full name</label>
+    <input id="name" name="name" type="text" required>
 
-        <label for="name">Full name</label>
-        <input id="name" name="name" type="text" required>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" required>
 
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" required>
+    <label for="phone">Phone</label>
+    <input id="phone" name="phone" type="tel">
 
-        <label for="phone">Phone</label>
-        <input id="phone" name="phone" type="tel">
+    <label for="company">Company (optional)</label>
+    <input id="company" name="company" type="text">
 
-        <label for="company">Company (optional)</label>
-        <input id="company" name="company" type="text">
+    <label for="quantity">Quantity</label>
+    <select id="quantity" name="quantity" required>
+      <option value="50">50</option>
+      <option value="100" selected>100</option>
+      <option value="250">250</option>
+      <option value="500">500</option>
+    </select>
 
-        <div class="row">
-          <div class="col">
-            <label for="quantity">Quantity</label>
-            <select id="quantity" name="quantity" required>
-              <option value="50">50</option>
-              <option value="100" selected>100</option>
-              <option value="250">250</option>
-              <option value="500">500</option>
-            </select>
-          </div>
-          <div class="col">
-            <label for="package">Package</label>
-            <select id="package" name="package">
-              <option value="standard">Standard</option>
-              <option value="premium">Premium</option>
-              <option value="package-2">Package 2</option>
-              <option value="package-3">Package 3</option>
-            </select>
-          </div>
-        </div>
+    <label for="package">Package</label>
+    <select id="package" name="package">
+      <option value="standard">Standard</option>
+      <option value="premium">Premium</option>
+      <option value="package-2">Package 2</option>
+      <option value="package-3">Package 3</option>
+    </select>
 
-        <label for="details">Design / Additional details</label>
-        <textarea id="details" name="details" rows="6" placeholder="Tell us about text, logo, finish, deadline, etc."></textarea>
+    <label for="details">Design / Additional details</label>
+    <textarea id="details" name="details" rows="6" placeholder="Tell us about text, logo, finish, deadline, etc."></textarea>
 
-        <button class="submit" type="submit">Submit order request</button>
-      </form>
-    </section>
-  </main>
+    <button type="submit">Submit order request</button>
+  </form>
 
-  <footer>
-    <p>By submitting you agree we'll contact you about your order.</p>
-  </footer>
+  <p style="margin-top:18px;font-size:0.9em;color:#555">By submitting you agree we'll contact you about your order.</p>
 </body>
 </html>
